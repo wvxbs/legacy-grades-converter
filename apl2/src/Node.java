@@ -1,6 +1,12 @@
 // arquivo: src/apl2/Node.java
 
 // TODO: Colocar a identificação dos(as) integrantes aqui.
+// Gabriel Ferreira
+// RA: 10442043
+// Gian Lucca Campanha Ribeiro
+// RA: 10438361
+// Pedro Henrique Saraiva Arruda
+// RA: 10437747
 
 package apl2.src;
 
@@ -16,6 +22,72 @@ package apl2.src;
 
 public class Node {
 
-    // TODO: Implementar a classe conforme o enunciado da atividade Apl2.
+    private String id;
+    private String name;
+    private int integerPart;
+    private double decimalPart;
+    public Node next;
+    public Node prev;
 
+    public Node(String id, String name, int integerPart, double decimalPart) {
+        this.id = id;
+        this.name = name;
+        this.integerPart = integerPart;
+        this.decimalPart = decimalPart;
+        this.next = null;
+        this.prev = null;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getIntegerPart() {
+        return integerPart;
+    }
+
+    public void setIntegerPart(int integerPart) {
+        this.integerPart = integerPart;
+    }
+
+    public double getDecimalPart() {
+        return decimalPart;
+    }
+
+    public void setDecimalPart(double decimalPart) {
+        this.decimalPart = decimalPart;
+    }
+
+    public Node getNext() {
+        return next;
+    }
+
+    public void setNext(Node next) {
+        this.next = next;
+    }
+
+    public Node getPrev() {
+        return prev;
+    }
+
+    public void setPrev(Node prev) {
+        this.prev = prev;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + id + "; " + name + "; " + (integerPart + decimalPart) + ")";
+    }
 }
