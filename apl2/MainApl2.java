@@ -26,7 +26,6 @@
 // https://www.youtube.com/watch?v=N6dOwBde7-M&t=110s
 // https://dev.to/antoniorws/explorando-nodes-em-java-5e59
 
-
 package apl2;
 
 import apl2.src.*;
@@ -60,41 +59,13 @@ public class MainApl2 {
             return;
         }
 
-        System.out.println(">>>>>>>>>> Dados originais (sistema legado) >>>>>>>>>>");
-        System.out.println(originalList);
-        System.out.println("<<<<<<<<<< Dados originais (sistema legado) <<<<<<<<<<\n");
-
-        DLinkedList convertedList = Operation.map(originalList);
-        System.out.println(">>>>>>>>>> Dados convertidos para a nova representação dos dados >>>>>>>>>>");
-        System.out.println(convertedList);
-        System.out.println("<<<<<<<<<< Dados convertidos para a nova representação dos dados <<<<<<<<<<\n");
-
-        DLinkedList filteredGradedList = Operation.filterRemoveNonGraded(convertedList);
-        System.out.println(">>>>>>>>>> Lista filtrada (somente notas válidas) >>>>>>>>>>");
-        System.out.println(filteredGradedList);
-        System.out.println("<<<<<<<<<< Lista filtrada (somente notas válidas) <<<<<<<<<<\n");
-
-        DLinkedList filteredNonGradedList = Operation.filterRemoveGraded(convertedList);
-        System.out.println(">>>>>>>>>> Lista filtrada (somente 'ausência de nota') >>>>>>>>>>");
-        System.out.println(filteredNonGradedList);
-        System.out.println("<<<<<<<<<< Lista filtrada (somente 'ausência de nota') <<<<<<<<<<\n");
-
-        float average = Operation.reduce(filteredGradedList);
-        System.out.println(">>>>>>>>>> Média das notas válidas >>>>>>>>>>");
-        System.out.println(average);
-        System.out.println("<<<<<<<<<< Média das notas válidas <<<<<<<<<<\n");
-
-        DLinkedList aboveAverageList = Operation.filterRemoveBelowAverage(filteredGradedList, average);
-        System.out.println(">>>>>>>>>> Lista com notas acima da média >>>>>>>>>>");
-        System.out.println(aboveAverageList);
-        System.out.println("<<<<<<<<<< Lista com notas acima da média <<<<<<<<<<\n");
-
-        System.out.println(">>>>>>>>>> Lista mapeada para uma única string >>>>>>>>>>");
-        System.out.println(Operation.mapToString(convertedList));
-        System.out.println("<<<<<<<<<< Lista mapeada para uma única string <<<<<<<<<<\n");
-
         Scanner scanner = new Scanner(System.in);
         int choice;
+        DLinkedList convertedList = Operation.map(originalList);
+        DLinkedList filteredGradedList = Operation.filterRemoveNonGraded(convertedList);
+        DLinkedList filteredNonGradedList = Operation.filterRemoveGraded(convertedList);
+        float average = Operation.reduce(filteredGradedList);
+        DLinkedList aboveAverageList = Operation.filterRemoveBelowAverage(filteredGradedList, average);
 
         do {
             System.out.println("\nSistema Conversor de Notas");
