@@ -4,6 +4,12 @@
 // arquivo: src/apl2/Operation.java
 
 // TODO: Colocar a identificação dos(as) integrantes aqui.
+// Gabriel Ferreira
+// RA: 10442043
+// Gian Lucca Campanha Ribeiro
+// RA: 10438361
+// Pedro Henrique Saraiva Arruda
+// RA: 10437747
 
 package apl2.src;
 
@@ -19,8 +25,18 @@ public class Operation {
      * @return Uma nova {@code DLinkedList} que contém o mapeamento da coleção de dados {@code original} para a nova estrutura usada pelo sistema de notas.
      */
     public static DLinkedList map(final LinkedListOriginal original) {
-        // TODO: Implementar o método e remover o lançamento de exceção abaixo.
-        throw new UnsupportedOperationException("Método ainda não implementado.");
+        DLinkedList novaLista = new DLinkedList();
+        NodeOriginal atual = original.getHead();
+
+        while (atual != null) {
+            String novoId = "23.S1-" + String.format("%03d", atual.getId());
+            String novoNome = atual.getNome();
+            float novaNota = atual.getInteiro() + (float) atual.getDecimo() / 10.0f;
+            novaLista.append(novoId, novoNome, (int) novaNota, (double) (novaNota - (int) novaNota));
+            atual = atual.getNext();
+        }
+
+        return novaLista;
     }
 
     /**
@@ -33,8 +49,17 @@ public class Operation {
      * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada com nós que possuem apenas pessoas com notas válidas.
      */
     public static DLinkedList filterRemoveNonGraded(final DLinkedList data) {
-        // TODO: Implementar o método e remover o lançamento de exceção abaixo.
-        throw new UnsupportedOperationException("Método ainda não implementado.");
+        DLinkedList novaLista = new DLinkedList();
+        Node atual = data.getHead();
+
+        while (atual != null) {
+            if (atual.getGrade() >= 0.0f && atual.getGrade() <= 10.0f) {
+                novaLista.append(atual.getId(), atual.getName(), (int) atual.getGrade(), (double) (atual.getGrade() - (int) atual.getGrade()));
+            }
+            atual = atual.getNext();
+        }
+
+        return novaLista;
     }
 
     /**
@@ -47,8 +72,17 @@ public class Operation {
      * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada com nós que possuem apenas pessoas com notas inválidas.
      */
     public static DLinkedList filterRemoveGraded(final DLinkedList data) {
-        // TODO: Implementar o método e remover o lançamento de exceção abaixo.
-        throw new UnsupportedOperationException("Método ainda não implementado.");
+        DLinkedList novaLista = new DLinkedList();
+        Node atual = data.getHead();
+
+        while (atual != null) {
+            if (atual.getGrade() < 0.0f || atual.getGrade() > 10.0f) {
+                novaLista.append(atual.getId(), atual.getName(), -99, -0.9); // Using a distinct invalid representation
+            }
+            atual = atual.getNext();
+        }
+
+        return novaLista;
     }
 
     /**
@@ -63,8 +97,17 @@ public class Operation {
      * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada somente com pessoas com notas maiores do que {@code average}.
      */
     public static DLinkedList filterRemoveBelowAverage(final DLinkedList data, float average) {
-        // TODO: Implementar o método e remover o lançamento de exceção abaixo.
-        throw new UnsupportedOperationException("Método ainda não implementado.");
+        DLinkedList novaLista = new DLinkedList();
+        Node atual = data.getHead();
+
+        while (atual != null) {
+            if (atual.getGrade() > average) {
+                novaLista.append(atual.getId(), atual.getName(), (int) atual.getGrade(), (double) (atual.getGrade() - (int) atual.getGrade()));
+            }
+            atual = atual.getNext();
+        }
+
+        return novaLista;
     }
 
     /**
@@ -77,8 +120,21 @@ public class Operation {
      * @return Média das notas ({@code float}) contidas na coleção de dados ({@code data}).
      */
     public static float reduce(final DLinkedList data) {
-        // TODO: Implementar o método e remover o lançamento de exceção abaixo.
-        throw new UnsupportedOperationException("Método ainda não implementado.");
+        if (data.isEmpty()) {
+            return 0.0f;
+        }
+
+        float soma = 0.0f;
+        int contador = 0;
+        Node atual = data.getHead();
+
+        while (atual != null) {
+            soma += atual.getGrade();
+            contador++;
+            atual = atual.getNext();
+        }
+
+        return soma / contador;
     }
 
     /**
@@ -92,8 +148,16 @@ public class Operation {
      * @return {@code String} com a coleção de dados separada por ponto-e-vírgula (dados de cada pessoa) e quebras de linha (cada pessoa).
      */
     public static String mapToString(final DLinkedList data) {
-        // TODO: Implementar o método e remover o lançamento de exceção abaixo.
-        throw new UnsupportedOperationException("Método ainda não implementado.");
-    }
+        StringBuilder resultado = new StringBuilder();
+        Node atual = data.getHead();
 
+        while (atual != null) {
+            resultado.append(atual.getId()).append(";");
+            resultado.append(atual.getName()).append(";");
+            resultado.append(String.format("%.1f", atual.getGrade())).append("\n");
+            atual = atual.getNext();
+        }
+
+        return resultado.toString();
+    }
 }

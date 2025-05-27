@@ -24,16 +24,14 @@ public class Node {
 
     private String id;
     private String name;
-    private int integerPart;
-    private double decimalPart;
+    private float grade;
     public Node next;
     public Node prev;
 
-    public Node(String id, String name, int integerPart, double decimalPart) {
+    public Node(String id, String name, float grade) {
         this.id = id;
         this.name = name;
-        this.integerPart = integerPart;
-        this.decimalPart = decimalPart;
+        this.grade = grade;
         this.next = null;
         this.prev = null;
     }
@@ -54,20 +52,12 @@ public class Node {
         this.name = name;
     }
 
-    public int getIntegerPart() {
-        return integerPart;
+    public float getGrade() {
+        return grade;
     }
 
-    public void setIntegerPart(int integerPart) {
-        this.integerPart = integerPart;
-    }
-
-    public double getDecimalPart() {
-        return decimalPart;
-    }
-
-    public void setDecimalPart(double decimalPart) {
-        this.decimalPart = decimalPart;
+    public void setGrade(float grade) {
+        this.grade = grade;
     }
 
     public Node getNext() {
@@ -86,8 +76,9 @@ public class Node {
         this.prev = prev;
     }
 
+
     @Override
     public String toString() {
-        return "(" + id + "; " + name + "; " + (integerPart + decimalPart) + ")";
+        return "(" + id + "; " + name + "; " + String.format("%.1f", grade) + ")";
     }
 }
